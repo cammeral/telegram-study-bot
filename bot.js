@@ -692,9 +692,14 @@ function calculateTimeRemaining(dueDate) {
 }
 
 // بدء تشغيل البوت
-bot.launch().then(() => {
-  console.log('✨ البوت يعمل بنجاح!');
-});
+const PORT = process.env.PORT || 3000;
+const URL = process.env.SERVER_URL;https://telegram-study-bot2.vercel.app
+
+bot.telegram.setWebhook(`${URL}/bot${process.env.BOT_TOKEN}`);
+
+bot.startWebhook(`/bot${process.env.BOT_TOKEN}`, null, PORT);
+
+console.log(`✅ Webhook is running on ${URL}/bot${process.env.BOT_TOKEN}`);
 
 // إدارة عملية الإغلاق
 process.once('SIGINT', () => {
